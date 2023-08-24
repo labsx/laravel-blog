@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +19,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index']);
 Route::get('/posts/{slug}', [PostController::class, 'show']);
-Route::get('/register', [PostController::class, 'register']);
-Route::post('/register', [PostController::class, 'store']);
-Route::post('/logout', [PostController::class, 'logout']);
-Route::get('/login', [PostController::class, 'display']);
-Route::post('/login', [PostController::class, 'login']);
-Route::get('/dashboard', [PostController::class, 'dashboard']);
-Route::get('/edit/{post}', [PostController::class, 'view']);
-Route::put('/edit/{post}', [PostController::class, 'edit']);
-Route::delete('/delete/{post}', [PostController::class, 'delete']);
+
+Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/register', [UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'store']);
+Route::get('/login', [UserController::class, 'display']);
+Route::post('/login', [UserController::class, 'login']);
+
+Route::get('/dashboard', [AdminController::class, 'dashboard']);
+Route::get('/edit/{post}', [AdminController::class, 'view']);
+Route::put('/edit/{post}', [AdminController::class, 'edit']);
+Route::delete('/delete/{post}', [AdminController::class, 'delete']);
 
 
 
