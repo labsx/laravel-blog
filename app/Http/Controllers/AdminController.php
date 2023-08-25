@@ -10,8 +10,9 @@ class AdminController extends Controller
     public function dashboard()
     {
         $posts = Post::latest()->get();
+        
         return view('dashboard.dashboard',[
-        'posts' => $posts
+            'posts' => $posts
         ]);
     }
     public function view($id)
@@ -22,9 +23,9 @@ class AdminController extends Controller
     public function edit(Request $request, Post $post)
     {
         $formFields = $request->validate([
-        "slug" => ['required', 'min:5'],
-        "title" => ['required', 'min:5'] ,
-        "body" => ['required', 'min:4', 'max: 255'], 
+            "slug" => ['required', 'min:5'],
+            "title" => ['required', 'min:5'] ,
+            "body" => ['required', 'min:4', 'max: 255'], 
         ]);
         $post->update($formFields);
         return back()->with('message', 'Update Data successfully!');
