@@ -23,9 +23,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-        "name" => ['required', 'min:5'],
-        "email" => ['required','email', Rule::unique('users', 'email')] ,
-        "password" => ['required', 'min:4', 'max: 50'], 
+            "name" => ['required', 'min:5'],
+            "email" => ['required','email', Rule::unique('users', 'email')] ,
+            "password" => ['required', 'min:4', 'max: 50'], 
         ]);
         $valdiate['password']=bcrypt($formFields ['password']);
         auth()->login(User::create($formFields));  
@@ -38,8 +38,8 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $formFields = $request->validate([
-        "email" =>['required','email'] ,
-        "password" => ['required'],
+            "email" =>['required','email'] ,
+            "password" => ['required'],
         ]);
         if(auth()->attempt($formFields)){
             $request->session()->regenerate();
