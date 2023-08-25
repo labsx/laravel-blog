@@ -12,16 +12,18 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->get();
+
         return view('posts',[
-        'posts' => $posts
+            'posts' => $posts
         ]);  
     }
 
     public function show(string $id)
     {
         $post = Post::where('slug', $id)->firstOrFail();
+
         return view('slug', [
-        'post' => $post
+            'post' => $post
         ]);
     }
     
