@@ -27,7 +27,7 @@ class UserController extends Controller
             "email" => ['required','email', Rule::unique('users', 'email')] ,
             "password" => ['required', 'min:4', 'max: 50'], 
         ]);
-        $valdiate['password']=bcrypt($formFields ['password']);
+        $validate['password']=bcrypt($formFields ['password']);
         auth()->login(User::create($formFields));  
         return redirect('/')->with('message', 'Added Successfully');
     }
